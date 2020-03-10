@@ -141,3 +141,128 @@ function currentDayString ()
 
 // Output to console.
 console.log( 'The current date is \r\n' + currentDayString() ); //\r\n is return/newline - this will now output on TWO lines in your console.
+
+/**
+ * Lets review some conditions-related operators.....
+ */
+// check for equivalency (type-agnostic.)
+ console.log( 1 == true); // True
+ console.log('Hello World!' == true); // false
+ console.log(-137 == true); //false
+ console.log('test' == 'test'); // True
+ console.log(36 == '36'); // True
+ console.log(0 == false); // True
+
+
+ // check if identical (value comparison including type.)
+ console.log( 1 === true); // Flase
+ console.log(''=== true); // false
+ console.log(-137 === true); //false
+ console.log('test' == 'test'); // True
+ console.log(36 ==='36'); // false
+ console.log(0 == false); // false
+ console.log(`test string` === "test string"); // True
+
+ /**
+  * Hamburger Menu.
+  */
+
+  // Lets grab our menu......
+var myNav = document.querySelector('nav');
+
+// And our menu button...
+var myNavButton = document.querySelector('.menu-button');
+
+// Lets listen for a click on this.
+myNavButton.addEventListener('click', function (event) {
+// when clicked, add/remove the "nev-open" class (in HTML.)
+myNav.classList.toggle('nav-open');
+});
+
+/**
+ * Lets dig in to object!
+ */
+
+ /* JavaScript Object Notation (JSON)*/
+ var myObject = { /*Valid JSON format. */
+     name: 'Jerry',
+     age: 61,
+     hobbies: [
+         'snowboarding',
+         'action movies'
+     ]
+ };
+ // Read whole object.
+ console.log( myObject);
+
+ //extracting property values....
+ console.log('object "name": ' + myObject.name);
+ console.log('object "age": ' + myObject.age);
+ console.log('object "hobbies": ' + myObject.hobbies[0]) + ', ' + myObject.hobbies[1];
+
+ //lets add to the hobbies array......
+ myObject.hobbies.push('programing');
+ console.log('update hobbies:');
+ console.log(myObject.hobbies);
+
+ /**
+  * lets wrap things up a bit with a method
+  */
+
+  var newObject= {
+      myNum: 5,
+      updateNum: function () { //Here is a method! Note the new syntax, versus a function
+        // Difference from a function?
+        this.myNum = this.myNum + 5;
+        return this.myNum
+      }
+  };
+
+  /**
+   * Object constructors.
+   */
+  //Here is our blueprint for "Person" objects.
+  function Person ( name, age, hobbies) {
+      this.name = name;
+      this.age = age;
+      this.hobbies = hobbies;
+      this.sayGoodgye = function () {
+          document.body.innerHTML+= `
+          <p>
+             This is
+             <strong>` + this.name + `</strong>,
+             saying <em>goodbye</em>!
+             </p>
+         
+          `;
+
+      };
+    
+  }
+  var jerry = new Person( ' Jerry', 61, ['snowboarding','action movies', 'programing']);
+  //add another! isnt this easier than typing out a whole object / every/ time!?
+  var sally = new Person('Sally', 36, ['daredevil biking', 'skydiving', 'teaching']);
+
+  // we can add to the blueprint using"prototype", even after its initial declrattion.
+  Person.prototype.introduction = function () { // this is a method in our "Person" blueprint/prototype/class!
+      var hobbiesString = '<ul>'; // set up for list HTML.
+      this.hobbies.forEach( function ( value, index){
+          hobbiesString += '<li>' + value + '</li>'; // loop through our hobbies and make a list item for each.
+      });
+      hobbiesString += '</ul>'; // we opened a UL in this string, so lets close it! (concatenation)
+      
+      // Add HTML to the body.
+      document.body.innerHTML += `
+      <h2>` + this.name + ` </h2>
+      <dl><!-- My name is: `+ this.name +` -->
+        <dt>Age</dt>
+        <dd>` + this.age + `</dd>
+        <dt>Hobbies</dt>
+        <dd>` + hobbiesString /* we built the string above, using this.hobbies! "hobbiesString" is s locsl variable (born in the method, and it will die in the method.) */ + `</dd>
+        </dl>
+      `;
+
+  }
+  Person.prototype.nickname = '';
+  jerry.nickname = 'The Big Jare';
+  sally.nickname = 'Sallers';

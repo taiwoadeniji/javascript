@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+            <title>
+                Hangman Exercise!
+            </title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            
+            <script src="https://kit.fontawesome.com/1e3f24cbb9.js" crossorigin="anonymous"></script> 
+    
+                
+        <!-- Stylesheets: -->   
+        <link rel="stylesheet" href="./css/hangman.css">
+                
+        <!-- Scripts: -->    
+        <script type="text/javascript" src="./js/hangman.js" defer></script>   
+    </head>
+    <body class="bg">
+<h1>Simple 'Hangman' Game</h1>
+
+<p>[no people will actually be harmed during this game]</p>
+<form id="hangman">
+    <input type="text" maxlength="1" minlength="1" name="letter" id="letter" placeholder="Guess a letter" />
+    <input id="guess" name="guess" type="submit" value="Guess" />
+    <button id="restart" name="restart" type="button">Restart</button>
+</form>
+<ul id="letters"></ul>
+<p id="man"></p>
+<p id="output" class="output"></p>
+</body>
+</html>
